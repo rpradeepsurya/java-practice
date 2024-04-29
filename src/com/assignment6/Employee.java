@@ -62,4 +62,12 @@ public class Employee implements Comparable<Employee> {
 		return this.name.compareTo(emp.getName());
 	}
 
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", experience=" + experience + ", salary="
+				+ salary + "]";
+	}
+	
+	
+
 }
