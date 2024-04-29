@@ -5,7 +5,7 @@ public class Employee implements Comparable<Employee> {
 	private int id;
 	private String name;
 	private int age;
-	private int experience;
+	private Integer experience;
 	private int salary;
 	
 	public Employee(int id, String name, int age, int experience, int salary) {
@@ -40,11 +40,11 @@ public class Employee implements Comparable<Employee> {
 		this.age = age;
 	}
 
-	public int getExperience() {
+	public Integer getExperience() {
 		return experience;
 	}
 
-	public void setExperience(int experience) {
+	public void setExperience(Integer experience) {
 		this.experience = experience;
 	}
 

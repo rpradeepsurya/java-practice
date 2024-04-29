@@ -1,5 +1,6 @@
 package com.assignment6;
 
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -10,6 +11,7 @@ public class InterfaceSort {
 		
 		Scanner scan = new Scanner(System.in);
 		TreeSet<Employee> set = new TreeSet<>();
+		TreeSet<Employee> setExp = new TreeSet<>(new ExperienceCompare());
 		
 		System.out.print("Enter Totoal number of employees: ");
 		int n = scan.nextInt();
@@ -33,11 +35,25 @@ public class InterfaceSort {
 			int salary = scan.nextInt();
 			
 			set.add(new Employee(id, name, age, experience, salary));
+			setExp.add(new Employee(id, name, age, experience, salary));
 		}
 		
+		// Ascending order based on employee name
 		System.out.println(set);
 		scan.close();
-
+		
+		
+		// 2. Ascending order based on employee experience using comparator interface
+		System.out.println(setExp);
 	}
 
+}
+
+class ExperienceCompare implements Comparator<Employee> {
+
+	@Override
+	public int compare(Employee emp1, Employee emp2) {
+		return emp1.getExperience().compareTo(emp2.getExperience());
+	}
+	
 }
