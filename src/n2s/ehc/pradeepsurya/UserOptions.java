@@ -6,21 +6,26 @@ import java.util.Scanner;
 public class UserOptions {
 
 	private Hashtable<Integer, UserBean> hashTable = new Hashtable<>();
-	private Scanner scan = new Scanner(System.in);
+	// private Scanner scan = new Scanner(System.in);
 
 	UserOptions() {
 
 	}
 
-	public void insert() throws InvalidUserId {
+	public void insert(Scanner scan) throws InvalidUserId {
 
 		System.out.print("Enter UserId: ");
-		int userId = Integer.parseInt(scan.nextLine());
-		System.out.println();
+		int userId;
+
+		try {
+			userId = Integer.parseInt(scan.nextLine());
+		} catch (NumberFormatException e) {
+			throw new InvalidUserId("User Id is Invalid. Please enter a valid number.");
+		}
+
 		if (hashTable.containsKey(userId))
 			throw new InvalidUserId("User Id already exist. Try different");
 
-		
 		System.out.print("Enter Name: ");
 		String userName = scan.nextLine();
 		hashTable.put(userId, new UserBean(userId, userName));
@@ -28,10 +33,16 @@ public class UserOptions {
 
 	}
 
-	public void update() throws UserIdNotFound {
+	public void update(Scanner scan) throws UserIdNotFound, InvalidUserId {
 
 		System.out.print("Enter UserId: ");
-		int userId = Integer.parseInt(scan.nextLine());
+		int userId;
+
+		try {
+			userId = Integer.parseInt(scan.nextLine());
+		} catch (NumberFormatException e) {
+			throw new InvalidUserId("User Id is Invalid. Please enter a valid number.");
+		}
 
 		if (!hashTable.containsKey(userId))
 			throw new UserIdNotFound("User Id not available. Try different");
@@ -54,10 +65,16 @@ public class UserOptions {
 
 	}
 
-	public void delete() throws UserIdNotFound {
+	public void delete(Scanner scan) throws UserIdNotFound, InvalidUserId {
 
 		System.out.print("\nEnter UserId: ");
-		int userId = Integer.parseInt(scan.nextLine());
+		int userId;
+
+		try {
+			userId = Integer.parseInt(scan.nextLine());
+		} catch (NumberFormatException e) {
+			throw new InvalidUserId("User Id is Invalid. Please enter a valid number.");
+		}
 
 		if (!hashTable.containsKey(userId))
 			throw new UserIdNotFound("User Id not available. Try different");
@@ -66,9 +83,9 @@ public class UserOptions {
 		System.out.println("Delete success!!!");
 
 	}
-	
-	public void closeScan() {
-		scan.close();
-	}
+
+	// public void closeScan() {
+	// scan.close();
+	// }
 
 }
