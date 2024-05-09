@@ -9,6 +9,7 @@ public class BookStore {
 	public static void main(String[] args) {
 
 		Set<Book> set = new HashSet<>();
+		set.add(new Book(1, "doe", 12.1f));
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("____________________________\n");
